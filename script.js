@@ -59,7 +59,7 @@ export function sortbylived() {
 	return inventors.sort((a, b) => {
     const livedA = a.passed - a.year;
     const livedB = b.passed - b.year;
-    return livedA - livedB; 
+    return livedB - livedA; 
   });
 }
 
@@ -67,8 +67,11 @@ export function sortbylived() {
 // Sort the people alphabetically by last name and return the sorted array
 export function sortByLastName() {
 	return people.sort((a, b) => {
-    const [aLast] = a.split(', ');
-    const [bLast] = b.split(', ');
+    const [aLast, aFirst] = a.split(', ');
+    const [bLast, bFirst] = b.split(', ');
+     if (aLast === bLast) {
+      return aFirst.localeCompare(bFirst);
+    }
     return aLast.localeCompare(bLast);
   });
 }
